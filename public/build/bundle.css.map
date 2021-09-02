@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../../Map.svelte",
+    "../../Logo.svelte",
+    "../../SearchBar.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n  import { onMount, setContext } from \"svelte\";\n  import { mapbox, keyApp } from \"./mapbox.js\";\n\n  setContext(keyApp,{\n    getMap: () => map\n  });\n\n  export let lat;\n  export let lon;\n  export let zoom;\n  export let style;\n\n  let container;\n  let map;\n\n  onMount(() => {\n   \n      map = new mapbox.Map({\n        container,\n        style,\n        hash: true,\n        center: [lon, lat],\n\t\tzoom,\n\t\tattributionControl: false\n      });\n\n      \n});\n</script>\n\n<style>\n #map {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 100vw;\n    height: 100vh;\n  }\n</style>\n\n<div id=\"map\" bind:this={container}>\n  {#if map}\n    <slot />\n  {/if}\n</div>\n",
+    "<script>\n  \n</script>\n\n<style>\n  .headerLogo {\n    position: absolute;\n    bottom: 5px;\n    z-index: 1000;\n    left:44%;\n    opacity:0.5\n\n  }\n</style>\n\n<div class=\"headerLogo\">\n  <a\n    title=\"Institut Catogràfic i Geològic de Catalunya\"\n    href=\"https://www.icgc.cat\"\n    target=\"_blank\">\n    <img width=\"125\" alt=\"Logi ICGCG\" src=\"assets/ICGC_white.svg\" class=\"ui image logo\" />\n  </a>\n</div>\n",
+    "<script>\n  import Textfield, {Input, Textarea} from '@smui/textfield';\n  import Icon from '@smui/textfield/icon/index';\n  import HelperText from '@smui/textfield/helper-text/index';\n  import CharacterCounter from '@smui/textfield/character-counter/index';\n  import {Icon as CommonIcon} from '@smui/common';\n  import FloatingLabel from '@smui/floating-label';\n  import LineRipple from '@smui/line-ripple';\n  import NotchedOutline from '@smui/notched-outline';\n\n  let name = '';\n  let valueOutlinedC =\"Cercar..\";\n</script>\n\n<!--\n  Normally you wouldn't provide a floating label, but you can manually set up a\n  textfield like this:\n-->\n <div class=\"search-text-input\">\n        <Textfield variant=\"outlined\" withTrailingIcon bind:value={valueOutlinedC}  input$aria-controls=\"helper-text-outlined-c\" input$aria-describedby=\"helper-text-outlined-c\">\n          <Icon class=\"material-icons\">search</Icon>\n        </Textfield>\n      </div>\n\n<style>\n.search-text-input {\n\n    margin-top: 9px;\n    margin-left: 10px;\n}\n</style>\n\n\n\n"
+  ],
+  "names": [],
+  "mappings": "AAgCC,IAAI,cAAC,CAAC,AACH,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,CAAC,CACT,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,KAAK,AACf,CAAC;ACjCD,WAAW,eAAC,CAAC,AACX,QAAQ,CAAE,QAAQ,CAClB,MAAM,CAAE,GAAG,CACX,OAAO,CAAE,IAAI,CACb,KAAK,GAAG,CACR,QAAQ,GAAG;;EAEb,CAAC;ACaH,kBAAkB,cAAC,CAAC,AAEhB,UAAU,CAAE,GAAG,CACf,WAAW,CAAE,IAAI,AACrB,CAAC"
+}
